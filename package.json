@@ -3,8 +3,18 @@
   "version": "0.1.0",
   "private": false,
   "description": "A tiny React hook for simple finite state machines.",
-  "main": "dist/index.js",
+  "main": "dist/bundle.cjs.js",
+  "module": "dist/bundle.esm.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/bundle.esm.js",
+      "require": "./dist/bundle.cjs.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
   "files": [
     "dist"
   ],
@@ -21,7 +31,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/react-simple-state-machine.git"
+    "url": "git+https://github.com/kogovsekm/react-simple-state-machine.git"
+  },
+  "homepage": "https://github.com/kogovsekm/react-simple-state-machine#readme",
+  "bugs": {
+    "url": "https://github.com/kogovsekm/react-simple-state-machine/issues"
   },
   "keywords": [
     "state-machine",

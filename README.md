@@ -75,6 +75,24 @@ npm test
 npm run typecheck    # type-check example and tests
 ```
 
+## Publish readiness
+
+Current package metadata is configured for:
+
+- GitHub repository: `https://github.com/kogovsekm/react-simple-state-machine`
+- npm package name: `react-simple-state-machine`
+- Entrypoints:
+  - CommonJS: `dist/bundle.cjs.js`
+  - ESM: `dist/bundle.esm.js`
+  - Types: `dist/index.d.ts`
+
+Before publishing, run:
+
+```bash
+npm run build
+npm pack --dry-run
+```
+
 ## Examples
 
 To test the state machine locally and see it in action, start the interactive example:
