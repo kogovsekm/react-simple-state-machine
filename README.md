@@ -75,9 +75,7 @@ npm test
 npm run typecheck    # type-check example and tests
 ```
 
-## Publish readiness
-
-Current package metadata is configured for:
+## Package metadata
 
 - GitHub repository: `https://github.com/kogovsekm/react-simple-state-machine`
 - npm package name: `react-simple-state-machine`
@@ -85,13 +83,6 @@ Current package metadata is configured for:
   - CommonJS: `dist/bundle.cjs.js`
   - ESM: `dist/bundle.esm.js`
   - Types: `dist/index.d.ts`
-
-Before publishing, run:
-
-```bash
-npm run build
-npm pack --dry-run
-```
 
 ## Examples
 
