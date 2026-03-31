@@ -6,7 +6,7 @@ The name Wyrd comes from Norse mythology, where it represents the weaving of fat
 
 ## Installation
 
-Install from npm:
+To install this package from npm:
 
 ```bash
 npm install react-simple-state-machine
