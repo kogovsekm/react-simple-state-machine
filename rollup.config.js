@@ -1,9 +1,9 @@
-import resolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import typescript from "@rollup/plugin-typescript";
-import { terser } from "rollup-plugin-terser";
+const resolve = require("@rollup/plugin-node-resolve").default;
+const commonjs = require("@rollup/plugin-commonjs");
+const typescript = require("@rollup/plugin-typescript");
+const { terser } = require("rollup-plugin-terser");
 
-export default {
+module.exports = {
   input: "src/index.ts",
   external: ["react"],
   output: [
