@@ -5,8 +5,8 @@ export type {
   SendFunction,
   StateNodeConfig,
   TransitionHandler,
-  WyrdMachineConfig,
-  WyrdMachineState,
+  StateMachineConfig,
+  StateMachineState,
 } from "./types";
 
 import type {
@@ -14,53 +14,53 @@ import type {
   SendFunction,
   StateNodeConfig,
   TransitionHandler,
-  WyrdMachineConfig,
-  WyrdMachineState,
+  StateMachineConfig,
+  StateMachineState,
 } from "./types";
 
 // Overload 1: explicit state and event map provided
-export function useWyrdMachine<
+export function useStateMachine<
   T extends string,
   E extends Record<string, unknown>,
 >(
-  config: WyrdMachineConfig<T, E>,
-): [WyrdMachineState<T>, SendFunction<E>, (to?: T) => boolean];
+  config: StateMachineConfig<T, E>,
+): [StateMachineState<T>, SendFunction<E>, (to?: T) => boolean];
 
 // Overload 1b: explicit state union `T` provided but events should be
 // inferred from the passed config's `states` mapping. This covers calls
-// like `useWyrdMachine<PaymentStatus>(machineConfig)` where the user
+// like `useStateMachine<PaymentStatus>(machineConfig)` where the user
 // specifies the state type but expects the event keys to be inferred
 // from the `states` object. We avoid `any` by using `Record<string, unknown>`.
-export function useWyrdMachine<
+export function useStateMachine<
   T extends string,
-  C extends WyrdMachineConfig<T, Record<string, unknown>>,
+  C extends StateMachineConfig<T, Record<string, unknown>>,
 >(
   config: C,
 ): [
-  WyrdMachineState<T>,
+  StateMachineState<T>,
   SendFunction<InferredEventsFromStates<C["states"]>>,
   (to?: T) => boolean,
 ];
 
 /**
- * useWyrdMachine will infer the state union `T` and event map `E` from the passed config's `states` mapping.
+ * useStateMachine will infer the state union `T` and event map `E` from the passed config's `states` mapping.
  *
  * @param config
  */
-export function useWyrdMachine<C extends { states: Record<string, unknown> }>(
+export function useStateMachine<C extends { states: Record<string, unknown> }>(
   config: C,
 ): [
-  WyrdMachineState<Extract<keyof C["states"], string>>,
+  StateMachineState<Extract<keyof C["states"], string>>,
   SendFunction<InferredEventsFromStates<C["states"]>>,
   (to?: Extract<keyof C["states"], string>) => boolean,
 ];
 
-export function useWyrdMachine<
+export function useStateMachine<
   T extends string,
   E extends Record<string, unknown> = Record<string, unknown>,
 >(
-  config: WyrdMachineConfig<T, E>,
-): [WyrdMachineState<T>, SendFunction<E>, (to?: T) => boolean] {
+  config: StateMachineConfig<T, E>,
+): [StateMachineState<T>, SendFunction<E>, (to?: T) => boolean] {
   const { initial, states } = config;
   const [current, setCurrent] = useState<T>(initial);
 

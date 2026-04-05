@@ -1,6 +1,6 @@
 import React from "react";
-import { useWyrdMachine } from "..";
-import type { WyrdMachineConfig } from "..";
+import { useStateMachine } from "..";
+import type { StateMachineConfig } from "..";
 
 type AsyncState = "standby" | "requesting" | "success" | "failed";
 
@@ -61,10 +61,12 @@ const machine = {
       },
     },
   },
-} as WyrdMachineConfig<AsyncState, AsyncEvents>;
+} as StateMachineConfig<AsyncState, AsyncEvents>;
 
 export default function AsyncExample() {
-  const [state, send, reset] = useWyrdMachine<AsyncState, AsyncEvents>(machine);
+  const [state, send, reset] = useStateMachine<AsyncState, AsyncEvents>(
+    machine,
+  );
   const [delayMs, setDelayMs] = React.useState<number>(900);
   const [asyncResult, setAsyncResult] = React.useState<string>(
     "No async transition sent yet.",
