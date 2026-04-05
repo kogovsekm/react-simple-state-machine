@@ -3,12 +3,12 @@
 import { describe, it, expect } from "vitest";
 import { act, renderHook } from "@testing-library/react";
 import * as sm from "..";
-import { useWyrdMachine } from "..";
-import type { WyrdMachineConfig } from "..";
+import { useStateMachine } from "..";
+import type { StateMachineConfig } from "..";
 
 describe("module exports", () => {
-  it("exports useWyrdMachine", () => {
-    expect(typeof (sm as { useWyrdMachine: unknown }).useWyrdMachine).toBe(
+  it("exports useStateMachine", () => {
+    expect(typeof (sm as { useStateMachine: unknown }).useStateMachine).toBe(
       "function",
     );
   });
@@ -31,8 +31,8 @@ describe("reset behavior", () => {
     } as const;
 
     const { result } = renderHook(() =>
-      useWyrdMachine<DemoState, DemoEvents>(
-        machine as unknown as sm.WyrdMachineConfig<DemoState, DemoEvents>,
+      useStateMachine<DemoState, DemoEvents>(
+        machine as unknown as sm.StateMachineConfig<DemoState, DemoEvents>,
       ),
     );
 
@@ -84,10 +84,10 @@ describe("regular machine flow", () => {
           on: { REOPEN: "ready" },
         },
       },
-    } as WyrdMachineConfig<DemoState, DemoEvents>;
+    } as StateMachineConfig<DemoState, DemoEvents>;
 
     const { result } = renderHook(() =>
-      useWyrdMachine<DemoState, DemoEvents>(machine),
+      useStateMachine<DemoState, DemoEvents>(machine),
     );
 
     // Initial state
@@ -168,10 +168,10 @@ describe("regular machine flow", () => {
           },
         },
       },
-    } as WyrdMachineConfig<DemoState, DemoEvents>;
+    } as StateMachineConfig<DemoState, DemoEvents>;
 
     const { result } = renderHook(() =>
-      useWyrdMachine<DemoState, DemoEvents>(machine),
+      useStateMachine<DemoState, DemoEvents>(machine),
     );
 
     // Move through states
@@ -224,10 +224,10 @@ describe("async machine flow", () => {
           on: { RETRY: "standby" },
         },
       },
-    } as WyrdMachineConfig<AsyncState, AsyncEvents>;
+    } as StateMachineConfig<AsyncState, AsyncEvents>;
 
     const { result } = renderHook(() =>
-      useWyrdMachine<AsyncState, AsyncEvents>(machine),
+      useStateMachine<AsyncState, AsyncEvents>(machine),
     );
 
     // Initial state
@@ -283,10 +283,10 @@ describe("async machine flow", () => {
           on: { RETRY: "standby" },
         },
       },
-    } as WyrdMachineConfig<AsyncState, AsyncEvents>;
+    } as StateMachineConfig<AsyncState, AsyncEvents>;
 
     const { result } = renderHook(() =>
-      useWyrdMachine<AsyncState, AsyncEvents>(machine),
+      useStateMachine<AsyncState, AsyncEvents>(machine),
     );
 
     // Start async transition
@@ -336,10 +336,10 @@ describe("async machine flow", () => {
           },
         },
       },
-    } as WyrdMachineConfig<AsyncState, AsyncEvents>;
+    } as StateMachineConfig<AsyncState, AsyncEvents>;
 
     const { result } = renderHook(() =>
-      useWyrdMachine<AsyncState, AsyncEvents>(machine),
+      useStateMachine<AsyncState, AsyncEvents>(machine),
     );
 
     // Start async transition

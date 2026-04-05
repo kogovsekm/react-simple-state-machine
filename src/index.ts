@@ -2,8 +2,8 @@ export type {
   MaybePromise,
   TransitionHandler,
   StateNodeConfig,
-  WyrdMachineConfig,
-  WyrdMachineState,
+  StateMachineConfig,
+  StateMachineState,
   SendFunction,
 } from "./types";
 

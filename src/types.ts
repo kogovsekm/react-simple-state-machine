@@ -52,7 +52,7 @@ export type InferredEventsFromStates<S> = Record<
  * State machine configuration type.
  * Defines the initial state and all state nodes with their transitions and effects.
  */
-export type WyrdMachineConfig<
+export type StateMachineConfig<
   T extends string,
   E extends Record<string, unknown> = Record<string, unknown>,
 > = {
@@ -61,15 +61,15 @@ export type WyrdMachineConfig<
 };
 
 /**
- * Public state shape returned by the useWyrdMachine hook.
+ * Public state shape returned by the useStateMachine hook.
  */
-export type WyrdMachineState<T extends string> = {
+export type StateMachineState<T extends string> = {
   value: T;
   nextEvents: Array<string>;
 };
 
 /**
- * Public shape of the `send` function returned by `useWyrdMachine`.
+ * Public shape of the `send` function returned by `useStateMachine`.
  *
  * `send(event, payload)` handles synchronous transitions.
  * `send.async(event, payload)` handles promise-returning transition handlers.

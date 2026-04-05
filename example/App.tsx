@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useWyrdMachine } from "..";
-import type { WyrdMachineConfig } from "..";
+import { useStateMachine } from "..";
+import type { StateMachineConfig } from "..";
 import AsyncExample from "./AsyncExample";
 
 type DemoState = "idle" | "ready" | "processing" | "complete";
@@ -69,10 +69,10 @@ const machine = {
       },
     },
   },
-} as WyrdMachineConfig<DemoState, DemoEvents>;
+} as StateMachineConfig<DemoState, DemoEvents>;
 
 export default function App() {
-  const [stateObj, send, reset] = useWyrdMachine<DemoState, DemoEvents>(
+  const [stateObj, send, reset] = useStateMachine<DemoState, DemoEvents>(
     machine,
   );
   const [signalStrength, setSignalStrength] = useState<number>(45);

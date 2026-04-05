@@ -2,8 +2,6 @@
 
 🧵 A tiny React hook for simple finite state machines.
 
-The name Wyrd comes from Norse mythology, where it represents the weaving of fate, a fitting metaphor for defining states and deterministic transitions in the app.
-
 ## Installation
 
 To install this package from npm, run:
@@ -17,7 +15,7 @@ Peer dependency: `react` (>=17).
 ## Quick usage
 
 ```ts
-import { useWyrdMachine } from 'react-simple-state-machine'
+import { useStateMachine } from 'react-simple-state-machine'
 
 const machine = {
 	initial: 'idle',
@@ -28,14 +26,14 @@ const machine = {
 }
 
 function Component(){
-	const [state, send] = useWyrdMachine(machine)
+  const [state, send] = useStateMachine(machine)
 	return <button onClick={()=>send('START')}>Start</button>
 }
 ```
 
 ## API
 
-### `useWyrdMachine<T, E>(config: WyrdMachineConfig<T, E>)`
+### `useStateMachine<T, E>(config: StateMachineConfig<T, E>)`
 
 Returns `[state, send, reset]`:
 
@@ -47,7 +45,7 @@ Returns `[state, send, reset]`:
 ### Configuration
 
 ```ts
-type WyrdMachineConfig<T, E> = {
+type StateMachineConfig<T, E> = {
   initial: T;                      // initial state name
   states: {
     [stateName]: {
@@ -135,7 +133,7 @@ Demonstrates:
 Function handlers can evaluate conditions and return different target states, enabling flexible branching logic. Here's an excerpt from Example 1 that showcases this pattern in a real component:
 
 ```ts
-const [stateObj, send] = useWyrdMachine({
+const [stateObj, send] = useStateMachine({
   initial: "idle",
   states: {
     idle: { on: { PREPARE: "ready" } },
